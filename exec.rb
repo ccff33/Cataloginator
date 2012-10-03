@@ -1,5 +1,7 @@
-require_relative 'lib/catalog'
+require_relative 'lib/catalog_spideroak'
 
-catalog = Catalog.new
+catalog = CatalogSpideroak.new
+catalog.username = "test_username"
+catalog.device = "test_pc"
 catalog.calibre_library_local_path = "E:/Books/Literature"
 catalog.to_file "j.html"
