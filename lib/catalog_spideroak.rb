@@ -5,7 +5,7 @@ require 'base32'
 # they are formed:
 #   spideroak_base_path +
 #   base32_encoded_username_without_the_last_=s +
-#   device_name
+#   device_name +
 #   abs_path_on_device
 
 class CatalogSpideroak < Catalog
