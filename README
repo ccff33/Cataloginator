@@ -1,0 +1,11 @@
+A quick and dirty Cataloginator.
+
+What it is?
+Exports your Calibre2 library to a list in a single html file, so you can put it everywhere.
+Supports searching.
+Has on screen cyrillic keyboard, so you don't have to hack your Kindle. Using it is still a mess.
+TODO: Fix that.
+It doesn't have any interface.
+TODO: Stick some GUI.
+
+But I acctually use it.
