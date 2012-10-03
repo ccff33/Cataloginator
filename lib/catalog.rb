@@ -1,4 +1,5 @@
 require_relative 'book'
+require_relative 'dummy_dependency_remover'
 require 'sqlite3'
 require 'haml'
 
@@ -32,9 +33,11 @@ class Catalog
                           formats]
     end
     template = Haml::Engine.new File.open(@@TEMPLATE_FILE, 'r').read
-    template.render Object.new,
+    html_content = template.render Object.new,
                     :content => table[:content],
                     :headers => table[:headers]
+    DummyDependencyRemover.embed_related_files html_content, File.dirname(@@TEMPLATE_FILE)
+    
   end
   
   def generate_book_list
