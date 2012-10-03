@@ -6,6 +6,8 @@
     %link{ :href => 'css/jquery.dataTables_themeroller.css', :rel => 'stylesheet' }
     %script{ :src => 'js/jquery.js' }
     %script{ :src => 'js/jquery.dataTables.min.js' }
+    %script
+      var json = #{additional};
     %script{ :src => 'js/jquery.dataTables.setup.js' }
     %title
   %body
@@ -22,7 +24,7 @@
               %td
                 - if td.respond_to? :each
                   - td.each do |entry|
-                    %a{ :href => entry[:url]}
+                    %a{ :href => entry[:url] }
                       = entry[:name]
                     &nbsp;
                 - else

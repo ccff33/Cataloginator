@@ -1,5 +1,6 @@
 require_relative 'book'
 require_relative 'dummy_dependency_remover'
+require 'json'
 require 'sqlite3'
 require 'haml'
 
@@ -20,6 +21,7 @@ class Catalog
   def generate
     books = generate_book_list
     table = Hash.new
+    additional = Hash.new
     table[:content] = Array.new
     table[:headers] = ['ID', 'Title', 'Author', 'Formats']
     books.each do |book|
@@ -31,11 +33,14 @@ class Catalog
                           book.title,
                           book.author,
                           formats]
+      additional[book.id] = {:cover => url(book.cover),
+                             :description => book.description || "no description"}
     end
     template = Haml::Engine.new File.open(@@TEMPLATE_FILE, 'r').read
     html_content = template.render Object.new,
                     :content => table[:content],
-                    :headers => table[:headers]
+                    :headers => table[:headers],
+                    :additional => JSON.generate(additional)
     DummyDependencyRemover.embed_related_files html_content, File.dirname(@@TEMPLATE_FILE)
     
   end
