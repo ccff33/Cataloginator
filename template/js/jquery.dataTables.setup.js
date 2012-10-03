@@ -30,7 +30,7 @@ $(document).ready(function() {
 	});
 	
 	
-	$('#books tbody td .details_button').click(function() {
+	$('#books tbody td .details_button').live('click', function() {
 		var nTr = this.parentNode.parentNode;
 		if(this.text.match('-')) {
 			this.text = "+";
