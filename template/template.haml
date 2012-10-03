@@ -1,0 +1,30 @@
+%html
+  %head
+    %meta{ 'http-equiv' => 'Content-type', :content => 'text/html; charset=utf-8' }
+    %link{ :href => 'css/jquery.dataTables.css', :rel => 'stylesheet' }
+    %link{ :href => 'css/jquery-ui-1.8.23.custom.css', :rel => 'stylesheet' }
+    %link{ :href => 'css/jquery.dataTables_themeroller.css', :rel => 'stylesheet' }
+    %script{ :src => 'js/jquery.js' }
+    %script{ :src => 'js/jquery.dataTables.min.js' }
+    %script{ :src => 'js/jquery.dataTables.setup.js' }
+    %title
+  %body
+    %table{ :id => "books" }
+      %thead
+        %tr
+          - headers.each do |th|
+            %th
+              = th
+      %tbody
+        - content.each do |tr|
+          %tr
+            - tr.each do |td|
+              %td
+                - if td.respond_to? :each
+                  - td.each do |entry|
+                    %a{ :href => entry[:url]}
+                      = entry[:name]
+                    &nbsp;
+                - else
+                  = td
+            
